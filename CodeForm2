@@ -124,7 +124,6 @@ Public Class Form2
             iterator.DateWord = CDate(txtDate.Text)
             iterator.Salary = CInt(txtSalary.Text)
 
-            Form1.FieldsEmpty(iterator)
             Form1.students.Add(iterator)
 
 
