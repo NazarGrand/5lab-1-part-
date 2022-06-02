@@ -1,0 +1,160 @@
+Public Class Form2
+
+    Private Sub txtSurname_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSurname.KeyPress
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtSurname_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtSurname.Validating
+        If IsNumeric(txtSurname.Text) Or txtSurname.Text = "" Then
+            ErrorProvider1.SetError(txtSurname, "only letters")
+            Button1.Enabled = False
+        Else
+            ErrorProvider1.SetError(txtSurname, "")
+            Button1.Enabled = True
+        End If
+    End Sub
+
+    Private Sub txtPost_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPost.KeyPress
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+
+    Private Sub txtPost_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPost.Validating
+        If IsNumeric(txtPost.Text) Or txtPost.Text = "" Then
+            ErrorProvider2.SetError(txtPost, "only letters")
+            Button1.Enabled = False
+        Else
+            ErrorProvider2.SetError(txtPost, "")
+            Button1.Enabled = True
+        End If
+    End Sub
+
+    Private Sub txtGender_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtGender.KeyPress
+        If Not Char.IsLetter(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtGender_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtGender.Validating
+        If IsNumeric(txtGender.Text) Or txtGender.Text = "" Then
+            ErrorProvider3.SetError(txtGender, "only letters")
+            Button1.Enabled = False
+        Else
+            ErrorProvider3.SetError(txtGender, "")
+            Button1.Enabled = True
+        End If
+    End Sub
+
+
+    Private Sub txtDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtDate.Validating
+        Dim flag As Integer = 0
+
+        If Char.IsNumber(Mid(txtDate.Text, 1, 1)) And Char.IsNumber(Mid(txtDate.Text, 2, 1)) And Mid(txtDate.Text, 3, 1) = "." Then
+            flag += 1
+        End If
+
+        If Char.IsNumber(Mid(txtDate.Text, 4, 1)) And Char.IsNumber(Mid(txtDate.Text, 5, 1)) And Mid(txtDate.Text, 6, 1) = "." Then
+            flag += 1
+        End If
+
+
+        If Char.IsNumber(Mid(txtDate.Text, 7, 1)) And Char.IsNumber(Mid(txtDate.Text, 8, 1)) And Char.IsNumber(Mid(txtDate.Text, 9, 1)) And Char.IsNumber(Mid(txtDate.Text, 10, 1)) Then
+            flag += 1
+        End If
+
+        If flag = 3 Then
+            ErrorProvider4.SetError(txtDate, "")
+            Button1.Enabled = True
+        Else
+            ErrorProvider4.SetError(txtDate, "only right date")
+            Button1.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub txtSalary_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSalary.KeyPress
+        If Not Char.IsNumber(e.KeyChar) AndAlso Not e.KeyChar = Chr(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtSalary_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtSalary.Validating
+        If Not IsNumeric(txtSalary.Text) Or txtSalary.Text = "" Then
+            ErrorProvider5.SetError(txtSalary, "only number")
+            Button1.Enabled = False
+        Else
+            ErrorProvider5.SetError(txtSalary, "")
+            Button1.Enabled = True
+        End If
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim flag As Integer = 0
+        If ErrorProvider1.GetError(txtSurname) <> "" Then
+            flag = 1
+        End If
+
+        If ErrorProvider2.GetError(txtPost) <> "" Then
+            flag = 1
+        End If
+
+        If ErrorProvider3.GetError(txtGender) <> "" Then
+            flag = 1
+        End If
+
+        If ErrorProvider4.GetError(txtDate) <> "" Then
+            flag = 1
+        End If
+
+        If ErrorProvider5.GetError(txtSalary) <> "" Then
+            flag = 1
+        End If
+
+
+        If flag = 0 Then
+            Dim iterator As New Student
+            iterator.Surname = txtSurname.Text
+            iterator.Post = txtPost.Text
+            iterator.Gender = txtGender.Text
+            iterator.DateWord = CDate(txtDate.Text)
+            iterator.Salary = CInt(txtSalary.Text)
+
+            Form1.FieldsEmpty(iterator)
+            Form1.students.Add(iterator)
+
+
+            Form1.DataGridView1.Rows.Clear()
+            Form1.Show()
+            Form1.Print_Table()
+        End If
+    End Sub
+
+    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub txtSurname_TextChanged(sender As Object, e As EventArgs) Handles txtSurname.TextChanged
+        Button1.Enabled = False
+    End Sub
+
+    Private Sub txtPost_TextChanged(sender As Object, e As EventArgs) Handles txtPost.TextChanged
+        Button1.Enabled = False
+    End Sub
+
+    Private Sub txtGender_TextChanged(sender As Object, e As EventArgs) Handles txtGender.TextChanged
+        Button1.Enabled = False
+    End Sub
+
+    Private Sub txtDate_TextChanged(sender As Object, e As EventArgs) Handles txtDate.TextChanged
+        Button1.Enabled = False
+    End Sub
+
+    Private Sub txtSalary_TextChanged(sender As Object, e As EventArgs) Handles txtSalary.TextChanged
+        Button1.Enabled = False
+    End Sub
+End Class
