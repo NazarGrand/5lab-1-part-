@@ -1,0 +1,118 @@
+
+Imports System.IO
+
+Public Class Form1
+
+    Public Property students As New List(Of Student)
+
+    Sub FieldsEmpty(student As Student)
+        If (student.Surname = "") Then
+            Throw New System.Exception("Surname is empty")
+        End If
+        If (student.Post = "") Then
+            Throw New System.Exception("Post is empty")
+        End If
+        If (student.Gender = "") Then
+            Throw New System.Exception("Gender is empty")
+        End If
+        If (student.Salary <= 0) Then
+            Throw New System.Exception("Post is empty")
+        End If
+    End Sub
+
+    Sub FileRead()
+        Try
+
+            Dim Exc As Object
+            Dim fin As String
+            Exc = CreateObject("Excel.Application")
+            Exc.Workbooks.Open("D:\Visual Basic 4 lab\ConsoleApp1\MyBook.xlsx").Activate()
+            fin = Exc.Cells(1, 1).value
+
+            Dim i As Integer = 1
+            Dim j As Integer = 1
+            While (fin IsNot Nothing)
+
+                If (students.Count <> 0) Then
+                    fin = Exc.Cells(i, j).value
+                End If
+
+                If fin = "" Then
+                    Exit While
+                End If
+
+                Dim iterator As New Student
+                iterator.Surname = fin
+
+                j += 1
+                fin = Exc.Cells(i, j).value
+                iterator.Post = fin
+
+                j += 1
+                fin = Exc.Cells(i, j).value
+                iterator.Gender = fin
+
+                j += 1
+                fin = Exc.Cells(i, j).value
+                iterator.DateWord = CDate(fin)
+
+                j += 1
+                fin = Exc.Cells(i, j).value
+                iterator.Salary = CInt(fin)
+
+                FieldsEmpty(iterator)
+                students.Add(iterator)
+
+                DataGridView1.Rows.Add(iterator.Surname, iterator.Post, iterator.Gender, iterator.DateWord, iterator.Salary)
+
+                i += 1
+                j = 1
+            End While
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+    Sub Print_Table()
+        DataGridView1.Rows.Clear()
+
+        For i = 0 To students.Count - 1 Step 1
+            DataGridView1.Rows.Add(students.Item(i).Surname, students.Item(i).Post, students.Item(i).Gender, students.Item(i).DateWord, students.Item(i).Salary)
+        Next
+    End Sub
+
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Hide()
+        Form2.Show()
+        DataGridView1.Rows.Clear()
+        DataGridView1.Visible = True
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        DataGridView1.Rows.Clear()
+        DataGridView1.Visible = True
+        FileRead()
+    End Sub
+End Class
+
+
+Public Class Student
+
+    Public Property Surname As String
+
+    Public Property Post As String
+
+    Public Property Gender As String
+
+    Public Property DateWord As Date
+
+    Public Property Salary As Integer
+
+End Class
