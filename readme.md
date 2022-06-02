@@ -18,5 +18,10 @@ I частина (6 балів):
 Дата форми має бути у форматі "dd.mm.yyyy"
 
 ![image](https://user-images.githubusercontent.com/88742233/171571854-573c2159-45fe-45a7-a5be-aafb3fb5b259.png)
+<br> Якщо все добре введено, то кнопка для відправки на першу форму стає доступною.
 
 ![image](https://user-images.githubusercontent.com/88742233/171571896-3947141b-499e-4730-8827-64175749b868.png)
+<br> Виводиться результат на формі
+
+![image](https://user-images.githubusercontent.com/88742233/171578392-aeefac1f-61a5-473b-b192-901a1b2aea2e.png)
+<br> Кнопка, яка виводить в таблицю дані з excel файлу
