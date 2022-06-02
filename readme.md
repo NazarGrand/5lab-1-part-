@@ -23,5 +23,7 @@ I частина (6 балів):
 ![image](https://user-images.githubusercontent.com/88742233/171571896-3947141b-499e-4730-8827-64175749b868.png)
 <br> Виводиться результат на формі
 
+![image](https://user-images.githubusercontent.com/88742233/171582756-64e1bbad-b32c-4176-b052-66a85fccd489.png)
+<br> Новий запис добавився на формі
 ![image](https://user-images.githubusercontent.com/88742233/171578392-aeefac1f-61a5-473b-b192-901a1b2aea2e.png)
 <br> Кнопка, яка виводить в таблицю дані з excel файлу
