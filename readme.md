@@ -10,7 +10,12 @@ I частина (6 балів):
 
 Кнопка для занесення даних в основну форму має стати доступною користувачу лише за умови коректно заповнених полів введення.
 
-![image](https://user-images.githubusercontent.com/88742233/171571783-b723f55f-a70e-4050-8f13-81c48254fe95.png)
+![image](https://user-images.githubusercontent.com/88742233/171576819-d9d5026f-8b50-4cfb-bc9a-99885ef31dde.png) <br>
+Це відбувається якщо ми нічого не ввели в рядок Surname
+
+![image](https://user-images.githubusercontent.com/88742233/171571783-b723f55f-a70e-4050-8f13-81c48254fe95.png) <br>
+У поля Surname, Post і Gender через подію KeyPress нічого не можемо ввести окрім букв. <br>
+Дата форми має бути у форматі "dd.mm.yyyy"
 
 ![image](https://user-images.githubusercontent.com/88742233/171571854-573c2159-45fe-45a7-a5be-aafb3fb5b259.png)
 
