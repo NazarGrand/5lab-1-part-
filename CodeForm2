@@ -126,7 +126,6 @@ Public Class Form2
 
             Form1.students.Add(iterator)
 
-
             Form1.DataGridView1.Rows.Clear()
             Form1.Show()
             Form1.Print_Table()
