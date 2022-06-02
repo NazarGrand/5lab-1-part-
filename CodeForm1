@@ -5,21 +5,6 @@ Public Class Form1
 
     Public Property students As New List(Of Student)
 
-    Sub FieldsEmpty(student As Student)
-        If (student.Surname = "") Then
-            Throw New System.Exception("Surname is empty")
-        End If
-        If (student.Post = "") Then
-            Throw New System.Exception("Post is empty")
-        End If
-        If (student.Gender = "") Then
-            Throw New System.Exception("Gender is empty")
-        End If
-        If (student.Salary <= 0) Then
-            Throw New System.Exception("Post is empty")
-        End If
-    End Sub
-
     Sub FileRead()
         Try
 
@@ -59,8 +44,7 @@ Public Class Form1
                 j += 1
                 fin = Exc.Cells(i, j).value
                 iterator.Salary = CInt(fin)
-
-                FieldsEmpty(iterator)
+                
                 students.Add(iterator)
 
                 DataGridView1.Rows.Add(iterator.Surname, iterator.Post, iterator.Gender, iterator.DateWord, iterator.Salary)
